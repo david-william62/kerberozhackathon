@@ -1,3 +1,10 @@
+// Loading Screen
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.body.classList.add('loaded');
+    }, 2000); // Ensures loader is visible for at least 2 seconds for effect
+});
+
 // Countdown Timer
 const eventDate = new Date('Jan 30, 2026 09:00:00').getTime();
 
@@ -30,6 +37,7 @@ updateCountdown(); // Initial call
 
 // Navbar Scroll Effect
 const navbar = document.querySelector('.navbar');
+const scrollProgress = document.querySelector('.scroll-progress');
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
@@ -38,6 +46,14 @@ window.addEventListener('scroll', () => {
     } else {
         navbar.style.background = 'transparent';
         navbar.style.boxShadow = 'none';
+    }
+
+    // Update Scroll Progress
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    if (scrollProgress) {
+        scrollProgress.style.width = scrolled + "%";
     }
 });
 
